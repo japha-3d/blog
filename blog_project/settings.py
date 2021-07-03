@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$uq&2xnlf^%9cl&7-es!ozbxx8&tat_)=ij3!$9lfzkoh#f(w0'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://japha7890.herokuapp.com/", "localhost"]
 
 
 # Application definition
@@ -38,14 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',#new
+    #'whitenoise.runserver_nostatic',#new
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,7 +124,7 @@ STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS='static',
-
+STATIC_ROOT=BASE_DIR/'/staticfiles'
 LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='home'
-STATICFILES_STORAGE='whitenoise.storage.CommpressedManifestStaticFilesStorage',
+#STATICFILES_STORAGE='whitenoise.storage.CommpressedManifestStaticFilesStorage',
